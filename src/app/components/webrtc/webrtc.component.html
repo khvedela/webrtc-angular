@@ -1,0 +1,13 @@
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; font-family: Arial, sans-serif;">
+    <div style="text-align: center;">
+        <h2 style="margin-bottom: 10px; color: #333;">Local Video</h2>
+        <video #localVideo autoplay muted playsinline style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"></video>
+    </div>
+    <div style="text-align: center;">
+        <h2 style="margin-bottom: 10px; color: #333;">Remote Video</h2>
+        <video #remoteVideo autoplay playsinline style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"></video>
+    </div>
+    <button (click)="startCall()" style="padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007BFF; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+        Start Call
+    </button>
+</div>
