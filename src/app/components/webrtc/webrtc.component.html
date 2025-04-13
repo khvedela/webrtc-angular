@@ -1,13 +1,26 @@
-<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; font-family: Arial, sans-serif;">
-    <div style="text-align: center;">
-        <h2 style="margin-bottom: 10px; color: #333;">Local Video</h2>
-        <video #localVideo autoplay muted playsinline style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"></video>
+<mat-toolbar color="primary" class="toolbar">
+  <span>Enterprise WebRTC Group Call</span>
+  <button mat-icon-button (click)="toggleMic()">
+    <mat-icon>{{ isMicMuted ? 'mic_off' : 'mic' }}</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="video-grid">
+  <mat-card class="video-tile local-video">
+    <video #localVideo autoplay muted playsinline></video>
+    <div class="video-overlay">
+      <span>You</span>
     </div>
-    <div style="text-align: center;">
-        <h2 style="margin-bottom: 10px; color: #333;">Remote Video</h2>
-        <video #remoteVideo autoplay playsinline style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"></video>
-    </div>
-    <button (click)="startCall()" style="padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007BFF; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
-        Start Call
-    </button>
+  </mat-card>
+
+  @for (remote of remoteUsers(); track $index) {
+    @if (remote.stream) {
+      <mat-card class="video-tile remote-video">
+        <video [appSrcObject]="remote.stream" autoplay playsinline></video>
+        <div class="video-overlay">
+          <span>{{ remote.userId }}</span>
+        </div>
+      </mat-card>
+    }
+  }
 </div>
